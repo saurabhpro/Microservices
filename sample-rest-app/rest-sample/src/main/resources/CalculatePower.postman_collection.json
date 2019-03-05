@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "09507f11-3954-4e10-9aa6-eec2cd94a1fd",
+		"name": "CalculatePower",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/calculation/power?base=10&exponent=2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\" : \"Saurabh Kumar\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculation/power?base=10&exponent=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculation",
+						"power"
+					],
+					"query": [
+						{
+							"key": "base",
+							"value": "10"
+						},
+						{
+							"key": "exponent",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/calculation/sqrt/169",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\" : \"Saurabh Kumar\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculation/sqrt/169",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculation",
+						"sqrt",
+						"169"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

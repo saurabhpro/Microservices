@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Calculation {
 
-    String function;
+    private String function;
     private List<String> input;
     private List<String> output;
 

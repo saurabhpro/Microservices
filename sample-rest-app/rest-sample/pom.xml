@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.saurabh</groupId>
-	<artifactId>lib</artifactId>
+	<artifactId>rest-sample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>lib</name>
-	<description>Demo project for Spring Boot</description>
+	<name>rest-sample</name>
+	<description>Demo project for Spring Boot which exposes a REST api for power-exponent calculation</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -35,7 +35,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.saurabh</groupId>
+            <artifactId>lib</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
