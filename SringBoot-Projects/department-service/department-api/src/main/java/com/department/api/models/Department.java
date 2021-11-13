@@ -1,5 +1,4 @@
 package com.department.api.models;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,18 +32,4 @@ public class Department {
     @JsonProperty("capacity")
     private int capacity;
 
-//    @Value.Immutable
-//    @Value.Style(
-//            strictBuilder = true,
-//            jdkOnly = true
-//    //        builder = "new"
-//    )
-//    public static interface Department {
-//        UUID getId();
-//
-//        String getDepartmentName();
-//
-//        int getCapacity();
-//
-//    }
 }

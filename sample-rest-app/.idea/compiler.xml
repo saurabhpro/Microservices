@@ -13,8 +13,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="lib" target="11" />
-      <module name="rest-sample" target="9" />
+      <module name="rest-sample" target="11" />
       <module name="sample-rest-app" target="9" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="lib" options="-parameters" />
+      <module name="rest-sample" options="-parameters" />
+    </option>
   </component>
 </project>
