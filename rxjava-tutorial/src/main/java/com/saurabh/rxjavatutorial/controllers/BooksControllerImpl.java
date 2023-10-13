@@ -24,6 +24,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.saurabh.rxjavatutorial.models.response.BaseWebResponse.successNoData;
+import static com.saurabh.rxjavatutorial.models.response.BaseWebResponse.successWithData;
+
 @RestController
 @RequestMapping("/api/v1/books")
 public class BooksControllerImpl implements BooksController {
@@ -37,19 +40,18 @@ public class BooksControllerImpl implements BooksController {
     @PostMapping
     public Single<ResponseEntity<BaseWebResponse<Book>>> addBook(@RequestBody AddBookRequest book) {
         return bookService.addBooks(book)
-                .subscribeOn(Schedulers.io())
-                .map(s -> ResponseEntity
-                        .created(URI.create("/api/v1/books/" + s.getId()))
-                        .body(BaseWebResponse.successWithData(s)));
+            .subscribeOn(Schedulers.io())
+            .map(s -> ResponseEntity
+                .created(URI.create("/api/v1/books/" + s.getId()))
+                .body(successWithData(s)));
     }
-
 
     @PutMapping("/{id}")
     public @NonNull Single<ResponseEntity<BaseWebResponse<?>>> updateBook(@PathVariable String id,
                                                                           @RequestBody UpdateBookRequest book) {
         return bookService.updateBook(id, book)
-                .subscribeOn(Schedulers.io())
-                .toSingle(() -> ResponseEntity.ok(BaseWebResponse.successNoData()));
+            .subscribeOn(Schedulers.io())
+            .toSingle(() -> ResponseEntity.ok(successNoData()));
     }
 
     @Override
@@ -57,30 +59,30 @@ public class BooksControllerImpl implements BooksController {
     public Single<ResponseEntity<BaseWebResponse<List<BookResponse>>>> getBooks(@RequestParam(defaultValue = "5") int limit,
                                                                                 @RequestParam(defaultValue = "0") int page) {
         return bookService.getBooks(limit, page)
-                .subscribeOn(Schedulers.io())
-                .map(books -> ResponseEntity.ok(BaseWebResponse.successWithData(toBookWebResponseList(books))));
+            .subscribeOn(Schedulers.io())
+            .map(books -> ResponseEntity.ok(successWithData(toBookWebResponseList(books))));
     }
 
     private List<BookResponse> toBookWebResponseList(List<Book> bookList) {
         return bookList
-                .stream()
-                .map(BookResponse.BookResponseTransformer::from)
-                .collect(Collectors.toList());
+            .stream()
+            .map(BookResponse.BookResponseTransformer::from)
+            .collect(Collectors.toList());
     }
 
     @Override
     @GetMapping("/{id}")
     public Single<ResponseEntity<BaseWebResponse<Book>>> getBookDetail(@PathVariable int id) {
         return bookService.getBookById(id)
-                .subscribeOn(Schedulers.io())
-                .map(bookResponse -> ResponseEntity.ok(BaseWebResponse.successWithData(bookResponse)));
+            .subscribeOn(Schedulers.io())
+            .map(bookResponse -> ResponseEntity.ok(successWithData(bookResponse)));
     }
 
     @Override
     @DeleteMapping("/{id}")
     public Single<ResponseEntity<Object>> deleteBook(@PathVariable int id) {
         return bookService.deleteBookById(id)
-                .subscribeOn(Schedulers.io())
-                .toSingle(() -> ResponseEntity.noContent().build());
+            .subscribeOn(Schedulers.io())
+            .toSingle(() -> ResponseEntity.noContent().build());
     }
 }

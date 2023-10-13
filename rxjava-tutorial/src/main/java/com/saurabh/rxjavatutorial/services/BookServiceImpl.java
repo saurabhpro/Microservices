@@ -3,14 +3,15 @@ package com.saurabh.rxjavatutorial.services;
 import com.saurabh.rxjavatutorial.models.entity.Author;
 import com.saurabh.rxjavatutorial.models.entity.Book;
 import com.saurabh.rxjavatutorial.models.request.AddBookRequest;
+import com.saurabh.rxjavatutorial.models.request.UpdateBookRequest;
 import com.saurabh.rxjavatutorial.repositories.AuthorRepository;
 import com.saurabh.rxjavatutorial.repositories.BookRepository;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,6 +29,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Single<Book> addBooks(AddBookRequest book) {
+        return null;
+    }
+
+    @Override
+    public Completable updateBook(String id, UpdateBookRequest book) {
         return null;
     }
 
@@ -49,15 +55,9 @@ public class BookServiceImpl implements BookService {
 
         book.setId(UUID.randomUUID().toString());
         book.setAuthor(Author.builder()
-                .id(addBookRequest.getAuthorId())
-                .build());
+            .id(addBookRequest.getAuthorId())
+            .build());
         return book;
-    }
-
-
-    @Override
-    public Completable updateBook(Book book) {
-        return null;
     }
 
     @Override

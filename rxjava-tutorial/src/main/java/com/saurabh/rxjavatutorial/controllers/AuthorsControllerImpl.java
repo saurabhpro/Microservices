@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 
+import static com.saurabh.rxjavatutorial.models.response.BaseWebResponse.successWithData;
+
 @RestController
 @RequestMapping("/api/v1/authors")
 public class AuthorsControllerImpl implements AuthorsController {
@@ -28,9 +30,9 @@ public class AuthorsControllerImpl implements AuthorsController {
     @PostMapping
     public Single<ResponseEntity<BaseWebResponse<Author>>> addAuthor(@RequestBody AddAuthorRequest author) {
         return authorService.addAuthor(author)
-                .subscribeOn(Schedulers.io())
-                .map(s -> ResponseEntity
-                        .created(URI.create("/api/authors/" + s.getId()))
-                        .body(BaseWebResponse.successWithData(s)));
+            .subscribeOn(Schedulers.io())
+            .map(s -> ResponseEntity
+                .created(URI.create("/api/authors/" + s.getId()))
+                .body(successWithData(s)));
     }
 }
