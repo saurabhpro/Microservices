@@ -22,8 +22,6 @@ jobs:
           java-version: 17
           distribution: 'temurin'
       - name: Department Service
-        run: |
-          cd department-service 
-          mvn -B test
+        run: mvn -B test --file department-service/pom.xml
       - name: Department Service
-        run: mvn -B package --file employee-service/pom.xml
+        run: mvn -B test --file employee-service/pom.xml
