@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    name: department-datasource #anyname
+    url: jdbc:postgresql://localhost:5432/mydb?currentSchema=payment_service&ssl=false
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  data:
+    rest:
+      basePath=/department-api
