@@ -23,5 +23,5 @@ jobs:
           distribution: 'temurin'
       - name: Department Service
         run: mvn -B test --file department-service/pom.xml
-      - name: Department Service
+      - name: Employee Service
         run: mvn -B test --file employee-service/pom.xml
