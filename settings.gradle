@@ -10,6 +10,5 @@ rootProject.name = 'Microservices'
 include 'snowpark-demo'
 include 'rxjava-tutorial'
 include 'cloud-gateway', 'service-registry'
-include 'snowpark-java-first'
 include 'javalin-demo'
 
