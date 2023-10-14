@@ -24,7 +24,8 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-
+    healthcheck:
+      enabled: true
 ## for detailed status of actuator at /actuator/health
 management:
   endpoint:

@@ -1,20 +1,20 @@
 package com.saurabh.cloudgateway;
 
-import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
-import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
-import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
-import org.springframework.cloud.client.circuitbreaker.Customizer;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Duration;
-
-@EnableEurekaClient
+@EnableDiscoveryClient
 @SpringBootApplication
+@RestController
 public class CloudGatewayApplication {
+
+    @RequestMapping("/")
+    public String home() {
+        return "Hello world";
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(CloudGatewayApplication.class, args);
