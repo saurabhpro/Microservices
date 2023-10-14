@@ -28,7 +28,7 @@ public class UserController {
         tags = {"User"},
         requestBody = @OpenApiRequestBody(content = {@OpenApiContent(from = NewUserRequest.class)}),
         responses = {
-            @OpenApiResponse(status = "201"),
+            @OpenApiResponse(status = "201", content = {@OpenApiContent(from = User.class)}),
             @OpenApiResponse(status = "400", content = {@OpenApiContent(from = ErrorResponse.class)})
         }
     )
@@ -87,19 +87,20 @@ public class UserController {
         tags = {"User"},
         requestBody = @OpenApiRequestBody(content = {@OpenApiContent(from = NewUserRequest.class)}),
         responses = {
-            @OpenApiResponse(status = "204"),
+            @OpenApiResponse(status = "200", content = {@OpenApiContent(from = User.class)}),
             @OpenApiResponse(status = "400", content = {@OpenApiContent(from = ErrorResponse.class)}),
             @OpenApiResponse(status = "404", content = {@OpenApiContent(from = ErrorResponse.class)})
         }
     )
     public static void update(Context ctx) {
-        final var user = UserService.findById(validPathParamUserId(ctx));
-        if (user == null) {
-            throw new NotFoundResponse("User not found");
+        final var userId = validPathParamUserId(ctx);
+        if (UserService.findById(userId) == null) {
+            throw new NotFoundResponse("User %s not found".formatted(userId));
         } else {
             final var newUser = ctx.bodyAsClass(NewUserRequest.class);
-            UserService.update(user.id(), newUser.name(), newUser.email());
-            ctx.status(204);
+            final var updatedUser = UserService.update(userId, newUser.name(), newUser.email());
+            ctx.status(200);
+            ctx.json(updatedUser);
         }
     }
 

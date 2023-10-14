@@ -4,7 +4,7 @@ info:
   title: User API
   version: "1.0"
 servers:
-- url: /
+  - url: /
 paths:
   /users:
     get:
@@ -32,7 +32,7 @@ paths:
           description: OK
       summary: Get all users
       tags:
-      - User
+        - User
       x-accepts: application/json
     post:
       operationId: createUser
@@ -68,22 +68,22 @@ paths:
           description: Bad Request
       summary: Create user
       tags:
-      - User
+        - User
       x-content-type: application/json
       x-accepts: application/json
   /users/{userId}:
     delete:
       operationId: deleteUserById
       parameters:
-      - description: The user ID
-        explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          format: int32
-          type: integer
-        style: simple
+        - description: The user ID
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int32
+            type: integer
+          style: simple
       responses:
         "500":
           content:
@@ -113,20 +113,20 @@ paths:
           description: Not Found
       summary: Delete user by ID
       tags:
-      - User
+        - User
       x-accepts: application/json
     get:
       operationId: getUserById
       parameters:
-      - description: The user ID
-        explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          format: int32
-          type: integer
-        style: simple
+        - description: The user ID
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int32
+            type: integer
+          style: simple
       responses:
         "500":
           content:
@@ -160,20 +160,20 @@ paths:
           description: Not Found
       summary: Get user by ID
       tags:
-      - User
+        - User
       x-accepts: application/json
     patch:
       operationId: updateUserById
       parameters:
-      - description: The user ID
-        explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          format: int32
-          type: integer
-        style: simple
+        - description: The user ID
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int32
+            type: integer
+          style: simple
       requestBody:
         content:
           application/json:
@@ -192,8 +192,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
           description: Service Unavailable
-        "204":
-          description: No Content
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
         "400":
           content:
             application/json:
@@ -208,7 +212,7 @@ paths:
           description: Not Found
       summary: Update user by ID
       tags:
-      - User
+        - User
       x-content-type: application/json
       x-accepts: application/json
 components:
@@ -227,9 +231,9 @@ components:
             type: string
           type: object
       required:
-      - status
-      - title
-      - type
+        - status
+        - title
+        - type
       type: object
     User:
       example:
@@ -245,9 +249,9 @@ components:
         email:
           type: string
       required:
-      - email
-      - id
-      - name
+        - email
+        - id
+        - name
       type: object
     NewUserRequest:
       example:
@@ -259,7 +263,7 @@ components:
         email:
           type: string
       required:
-      - email
-      - name
+        - email
+        - name
       type: object
 
