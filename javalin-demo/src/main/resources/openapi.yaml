@@ -1,0 +1,261 @@
+openapi: 3.0.1
+info:
+  description: Demo API with 5 operations
+  title: User API
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /users:
+    get:
+      operationId: getAllUsers
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Server Error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: OK
+      summary: Get all users
+      tags:
+      - User
+      x-accepts: application/json
+    post:
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserRequest'
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Server Error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        "201":
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+      summary: Create user
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts: application/json
+  /users/{userId}:
+    delete:
+      operationId: deleteUserById
+      parameters:
+      - description: The user ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Server Error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+      summary: Delete user by ID
+      tags:
+      - User
+      x-accepts: application/json
+    get:
+      operationId: getUserById
+      parameters:
+      - description: The user ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Server Error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+      summary: Get user by ID
+      tags:
+      - User
+      x-accepts: application/json
+    patch:
+      operationId: updateUserById
+      parameters:
+      - description: The user ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserRequest'
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Server Error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+      summary: Update user by ID
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        title:
+          type: string
+        status:
+          format: int32
+          type: integer
+        type:
+          type: string
+        details:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - status
+      - title
+      - type
+      type: object
+    User:
+      example:
+        name: name
+        id: 0
+        email: email
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+      required:
+      - email
+      - id
+      - name
+      type: object
+    NewUserRequest:
+      example:
+        name: name
+        email: email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+      - email
+      - name
+      type: object
+
