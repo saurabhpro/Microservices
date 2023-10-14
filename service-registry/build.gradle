@@ -4,6 +4,7 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.4'
@@ -16,10 +17,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.cloud:spring-cloud-starter-gateway:4.0.7'
-    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.0.3'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.0.3'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -30,7 +28,7 @@ tasks.named('test') {
 
 group = 'com.saurabh'
 version = '0.0.1-SNAPSHOT'
-description = 'cloud-gateway'
+description = 'service-registry'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 tasks.withType(JavaCompile) {
