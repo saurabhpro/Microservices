@@ -24,6 +24,6 @@ jobs:
       - name: Department Service
         run: |
           cd department-service 
-          mvn -B package
+          mvn -B test
       - name: Department Service
         run: mvn -B package --file employee-service/pom.xml
