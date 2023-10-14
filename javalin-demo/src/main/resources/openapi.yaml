@@ -56,6 +56,10 @@ paths:
           description: Service Unavailable
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
         "400":
           content:
             application/json:
