@@ -19,6 +19,8 @@ dependencies {
     }
     implementation "io.prometheus:simpleclient_httpserver:${prometheusVersion}"
     implementation "com.konghq:unirest-java:${unrestJavaVersion}"
+    implementation "com.j2html:j2html:${j2htmlVersion}"
+    implementation "org.apache.commons:commons-email:${commonsEmail}"
 
     testImplementation platform("org.junit:junit-bom:${junitVersion}")
     testImplementation "org.junit.jupiter:junit-jupiter"
