@@ -1,7 +1,6 @@
 package org.saurabh;
 
 import io.javalin.Javalin;
-import io.javalin.validation.JavalinValidation;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -17,15 +16,14 @@ public class ModernJavaApp {
 
         // We want to accept a String URI from a user, so we need to inform Javalin of how to convert the
         // user provided String into an actual URI. We can use HttpRequest.Builder for validation.
-        JavalinValidation
-            .register(URI.class, s -> HttpRequest.newBuilder()
-                .uri(URI.create(s))
-                .build()
-                .uri()
-            );
 
         final var app = Javalin
-            .create(javalinConfig -> javalinConfig.http.asyncTimeout = 10_000)
+            .create(javalinConfig -> {
+                javalinConfig.validation.register(
+                    URI.class,
+                    s -> HttpRequest.newBuilder().uri(URI.create(s)).build().uri());
+                javalinConfig.http.asyncTimeout = 10_000;
+            })
             .start(7070);
 
         app.get("/async-proxy/<url>", ctx -> {
