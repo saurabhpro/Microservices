@@ -6,7 +6,7 @@
 
 plugins {
     id 'java'
-    id "io.freefair.lombok" version "8.6"  // for lombok processors
+    id "io.freefair.lombok" version "8.14.3"  // for lombok processors
     id 'org.springframework.boot' version '3.1.5'
     id 'io.spring.dependency-management' version '1.1.5'
 }
