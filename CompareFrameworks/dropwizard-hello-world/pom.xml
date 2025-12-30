@@ -16,7 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <dropwizard.version>4.0.7</dropwizard.version>
+        <dropwizard.version>5.0.0</dropwizard.version>
         <mainClass>com.saurabh.DropwizardHelloWorldApplication</mainClass>
     </properties>
 
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-views</artifactId>
-            <version>4.0.7</version>
+            <version>5.0.0</version>
         </dependency>
     </dependencies>
 
