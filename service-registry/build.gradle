@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.0.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:5.0.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
